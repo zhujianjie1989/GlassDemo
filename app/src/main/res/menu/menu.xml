@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Use the constants defined in the ContextualMenus.Command enum-->
+    <item
+        android:id="@+id/baidu_menu_item"
+        android:title="@string/baidu">
+    </item>
+    <item
+        android:id="@+id/google_menu_item"
+        android:title="@string/google">
+    </item>
+    <item
+        android:id="@+id/lb_menu_item"
+        android:title="@string/yahoo">
+    </item>
+
+    <item
+        android:id="@+id/big_menu_item"
+        android:title="@string/big">
+    </item>
+
+    <item
+        android:id="@+id/small_menu_item"
+        android:title="@string/small">
+    </item>
+</menu>

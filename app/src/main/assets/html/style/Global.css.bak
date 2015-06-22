@@ -1,0 +1,110 @@
+﻿body
+{
+	text-align:center;
+	margin-top:3px;				/* 去掉网页顶部空白 */
+	font-size:16px;
+}
+
+#Banner
+{
+	height:8px;
+	background-color:FF0088;
+}
+
+#Main
+{
+	/* 实现水平居中 */
+	text-align:left;
+	width: 1300px;
+	margin:0px auto; 
+	padding:0px 0px 0px 0px;
+	border-style:none;	
+	font-size:20px;
+	font-family:Arial;
+}
+
+#Content 
+{
+	margin:1px 0px 0px 0px;
+	padding:0px 0px 0px 0px;
+	border-style:none;
+	text-align:center;
+	font-size:16px;
+	clear:left;	
+	width: 1300px;
+	height:600px;
+	font-family:Arial;		
+}
+
+#Left 
+{	
+	position: relative;
+	margin:0px 0px 0px 0px;
+	padding:0px 0px 0px 0px;
+	border-style:none;	
+	text-align:center;
+	font-size:16px;
+	float:left;
+	width:1300px;
+	height:600px;	
+	font-size:16px;
+}
+
+#backGroundCanvas
+{
+	position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index:0;
+}
+
+.CanvasToHidden
+{
+	position: absolute;
+  left: 0px;
+  top: 0px;
+  visibility:hidden;
+  z-index:0;
+}
+
+.CanvasToShow
+{
+	position: absolute;
+  left: 0px;
+  top: 0px;
+  visibility:visible;
+  z-index:1;
+}
+
+.TopCanvas
+{
+	position: absolute;
+  left: 0px;
+  top: 0px;
+  visibility:visible;
+  z-index:2;
+}
+
+.TopCanvas2
+{
+	position: absolute;
+  left: 600px;
+  top: 0px;
+  visibility:visible;
+  z-index:2;
+}
+
+.TopCanvas3
+{
+	position: absolute;
+  left: 650px;
+  top: 0px;
+  visibility:visible;
+  z-index:2;
+}
+
+.ImageHidden
+{
+	visibility: hidden;
+}
+

@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>NTU Location System</title>
+    <link href="style/Global.css" rel="stylesheet" type="text/css" />
+    <link href="style/Header.css" rel="stylesheet" type="text/css" />
+    <link href="style/Footer.css" rel="stylesheet" type="text/css" />
+    <script src="js/init.js"  language="javascript" ></script>
+    <script src="js/drawbackground.js"  language="javascript" ></script>
+    <script src="js/heatmap.js"  language="javascript" ></script>
+
+</head>
+<body onLoad="init()">
+<div id="Main">
+
+    <div id="Content">
+        <div id="Left">
+            <canvas id="backGroundCanvas" width="1300" height="600"></canvas>
+            <canvas id="locationCanvas" class="CanvasToShow" width="1300" height="600"></canvas>
+            <canvas id="locationCanvas2" class="CanvasToHidden" width="1300" height="600"></canvas>
+            <canvas id="navigationCanvas" class="TopCanvas" width="1300" height="600"></canvas>
+            <canvas id="heatMapCanvas" class="CanvasToHidden" width="1300" height="600"></canvas>
+            <img id="userImage" class="ImageHidden" src="images/user.png" />
+            <img id="backgroundImage" class="ImageHidden" src="images/lab.jpg" />
+            <img id="navigationImage" class="ImageHidden" src="images/navigation.png" />
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
