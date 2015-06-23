@@ -52,21 +52,8 @@ public class MainActivity extends Activity {
 
         web.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         //settings.setAppCacheEnabled(false);
-        web.loadUrl("javascript:document.body.style.zoom=0.5;");
 
-    //    web.loadUrl("http://172.19.13.9/zjjnavigation/position.html");
-        web.loadUrl("file:///android_asset/html/position.html");
 
-        web.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                // TODO Auto-generated method stub
-                view.loadUrl(url);
-                return true;
-            }
-        });
-        web.setInitialScale(45);
-       // web.loadUrl("javascript:document.body.style.zoom=0.3;");
     }
 
     @Override
@@ -86,6 +73,19 @@ public class MainActivity extends Activity {
     }
 
     private float scale =1;
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+       /* ActivityManager am = (ActivityManager)getSystemService (Context.ACTIVITY_SERVICE);
+        am.restartPackage(getPackageName());*/
+        Log.e("onDestroy", "onDestroy");
+
+
+    }
+
+
+
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         Log.e("onMenuItemSelected", "onMenuItemSelected");
@@ -98,7 +98,9 @@ public class MainActivity extends Activity {
             switch (item.getItemId()) {
                 case R.id.baidu_menu_item:
                     url = "http://www.baidu.com";
-                    web.loadUrl(url);
+                   /* web.loadUrl(url);*/
+
+                    web.loadUrl("javascript:SetNavigation(77,444);");
                     Log.e("baidu_menu_item", url);
                     break;
                 case R.id.google_menu_item:
@@ -130,7 +132,7 @@ public class MainActivity extends Activity {
 
             return true;
         }
-        // Good practice to pass through to super if not handled
+        // Good practice to pass through to super if0not handled
         return super.onMenuItemSelected(featureId, item);
     }
 
@@ -138,13 +140,29 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onResume() {
+        WebView web =(WebView) findViewById(R.id.webView);
+        Log.e("onResume", "onResume");
         super.onResume();
-   //     mCardScroller.activate();
+        web.loadUrl("javascript:document.body.style.zoom=0.5;");
+
+        //    web.loadUrl("http://172.19.13.9/zjjnavigation/position.html");
+        web.loadUrl("file:///android_asset/html/position.html");
+
+        web.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                // TODO Auto-generated method stub
+                view.loadUrl(url);
+                return true;
+            }
+        });
+        web.setInitialScale(50);
+
     }
 
     @Override
     protected void onPause() {
-    //    mCardScroller.deactivate();
+        Log.e("onPause", "onPause");
         super.onPause();
     }
 

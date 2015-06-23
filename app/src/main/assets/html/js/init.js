@@ -130,6 +130,7 @@ function init()
 function timerStart()
 {
 	SendData();
+
 	t=setTimeout("timerStart()",1000);
 }
 
@@ -254,6 +255,7 @@ function showNavigation(posStr)
   
   function setTarget()
 	{
+
 		clearlocation("navigationCanvas");
 		var gc=navigationLayer.getContext("2d");
 		var img=document.getElementById("navigationImage");
