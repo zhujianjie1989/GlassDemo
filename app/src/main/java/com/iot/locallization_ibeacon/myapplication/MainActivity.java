@@ -1,5 +1,6 @@
 package com.iot.locallization_ibeacon.myapplication;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -100,7 +101,7 @@ public class MainActivity extends Activity {
                     url = "http://www.baidu.com";
                    /* web.loadUrl(url);*/
 
-                    web.loadUrl("javascript:SetNavigation(77,444);");
+                    web.loadUrl("javascript:SetNavigation(360,20);");
                     Log.e("baidu_menu_item", url);
                     break;
                 case R.id.google_menu_item:

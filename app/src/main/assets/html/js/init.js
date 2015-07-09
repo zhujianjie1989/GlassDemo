@@ -1,7 +1,7 @@
-  var ww=33.48;
-	var bl=68;
-	var bt=20;
-	var cmd ="F8:CF:C5:D5:36:29"; //"14:F6:5A:AC:BF:4B";//"F8:CF:C5:D5:36:29";
+  var ww=15.35;
+	var bl=0;
+	var bt=0;
+	var cmd ="D0:4F:7E:4D:F2:3A"; //"14:F6:5A:AC:BF:4B";//"F8:CF:C5:D5:36:29";
 	var isShowMe = false;
 	var isShowHeatmap = false;
 	var map;
@@ -15,13 +15,7 @@ String.prototype.startWith=function(s){
      return false;
   return true;
  }
- 
-function getCookie(name)//È¡cookiesº¯Êý        
-{
-    var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
-     if(arr != null) return unescape(arr[2]); return null;
 
-}
  
 function init()
 {
@@ -33,29 +27,30 @@ function init()
 	navigationTargetY=0;
 	navigationLayer = document.getElementById("navigationCanvas");
 	navigationLayer.addEventListener('mousedown',this.mousedown,false);
-	navigationLayer.addEventListener('mousemove',this.mousemove,false);
-	isSend =0;
+	//navigationLayer.addEventListener('mousemove',this.mousemove,false);
+	//isSend =0;
 	//map = h337.create({"element":document.getElementById("heatMapCanvas"), "radius":30, });
 	///location/////////////
-	var canvasID="locationCanvas";
-	var host = "ws://172.19.13.9:1990";
+	canvasID="locationCanvas";
+	host = "ws://10.25.187.34:1990";
 	//alert(cmd);
-	if (cmd==null)
-	{
-		window.location.href="./index.php";
-	}
+	initSocket();
 
+}
+function initSocket(){
 	try
-  {
-    socket = new WebSocket(host);
-    socket.onopen = function() {
+  	{
+    	socket = new WebSocket(host);
+    	socket.onopen = function() {
     	//var a=0;
     	//alert("Welcome To Our WiFi Localization System!");
     	ShowOneUser();
     	};
-    socket.onclose = function (evt) {
- 			//alert("Time out, Pls refresh the page")
- 			}; 
+    	socket.onclose = function (evt) {
+    		initSocket();
+    		alert("change network");
+
+ 		};
  		socket.onmessage = function (evt) {
  			
  			var pos= evt.data;
@@ -66,18 +61,20 @@ function init()
 			
 			if (pos == "There is no this id")
  			{
+ 			alert("show no id");
  				StopShow();
  				return;
  			}
- 			
+/*
  			if (isSend==1)
  			{
  				isSend = 0;
  				//alert(pos);
- 			}
+ 			}*/
 			
 			if (pos.startWith("N:"))
 			{
+				//alert("show navication");
 				showNavigation(pos.split(":")[1]);
 			}
 			else if (pos=="clearToShown")
@@ -184,7 +181,7 @@ function clearlocation(canvasID)
 {
 	var lc=document.getElementById(canvasID);
 	var gc=lc.getContext("2d");
-	gc.clearRect(0,0,1300,600);
+	gc.clearRect(0,0,1000,810);
 }
 
 function showuser(x,y,id,canvasID)
@@ -196,17 +193,10 @@ function showuser(x,y,id,canvasID)
 	var lc=document.getElementById(canvasID);
 	var gc=lc.getContext("2d");
 	img=document.getElementById("userImage");
-	gc.drawImage(img,x-12.5,y-12.5);
-	gc.font="8px Arial";
-	if (isShowMe == false)
-	{
-	gc.strokeText(id,x-13,y+20);
-  }
-  else
-  {
-  	var userName = "here";
-  	gc.strokeText(userName,x-13,y+20);
-  }
+	gc.drawImage(img,x-10,y-10,20,20);
+	//gc.font="8px Arial";
+  	//var userName = "here";
+  	//gc.strokeText(userName,x-13,y+20);
 }
 
 function showNavigation(posStr)
@@ -261,10 +251,13 @@ function showNavigation(posStr)
 		var img=document.getElementById("navigationImage");
 		gc.drawImage(img,navigationTargetX-12,navigationTargetY-46);
 	}
-  
+
   this.mousedown=function(ev)
 	{
-		if (isSetTarget==1)
+		//alert("SetNavigation");
+		SetNavigation(400,230);
+
+		/*if (isSetTarget==1)
 		{
 		 isSetTarget=0;
 
@@ -280,7 +273,7 @@ function showNavigation(posStr)
 		 	}
 		  isStopNavigation = 0;
 		  
-		}
+		}*/
 		 
 	}
 	
@@ -296,7 +289,7 @@ function showNavigation(posStr)
 		 try
 		  {
          socket.send("Navigation:"+cmd+"|"+(navigationTargetX-bl)/ww+","+(navigationTargetY-bt)/ww);
-         ifSend = 1;
+         //isSend = 1;
       }catch(ex)
       {
          //alert("navigation is error");
